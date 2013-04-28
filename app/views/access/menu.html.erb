@@ -1,0 +1,12 @@
+<% @page_title = "Admin Menu" %>
+
+<div class="menu">
+  <h2>User Menu</h2>
+  <div class="identity">Logged in as: <%= session[:username]%></div>
+  <ul>
+    <li style = "font-weight: bold"><%= link_to("Manage Content", :controller => 'subjects') %></li>
+
+    <li style = "font-weight: bold"><%= link_to("Manage Users", :controller => 'users') %></li>
+    <li style = "font-weight: bold"><%= link_to("Logout", :action => 'logout') %></li>
+  </ul> 
+</div>

@@ -1,0 +1,36 @@
+<% @page_title = "Subjects List" %>
+
+<%= link_to("<< Back to Menu", {:controller => 'access', :action => 'menu'}, :class => 'back-link') %>
+
+
+<div class="subject list">
+  <h2>Subjects</h2>
+  
+  <%= link_to("Add New Subject", {:action => 'new'}, :class => 'action new') %>
+
+  <div><%= pluralize(@subjects.size, 'subject') %> found</div>
+  
+  <table class="listing" summary="Subject list">
+    <tr class="header">
+      <th>&nbsp;</th>
+      <th class ="center">Subject</th>
+      <th class ="center">Visible</th>
+      <th class ="center">Pages</th>
+      <th class ="center">Actions</th>
+    </tr>
+    <% @subjects.each do |subject| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td class ="center"><%= subject.position %></td>
+      <td class ="center"><%= subject.name %></td>
+      <td class="center"><%= status_tag(subject.visible) %></td>
+      <td class="center"><%= subject.pages.size %></td>
+      <td class="actions">
+        <%= link_to("View Pages", {:controller => 'pages', :action => 'list', :subject_id => subject.id}, :class => 'action show') %>
+        <%= link_to("Show", {:action => 'show', :id => subject.id}, :class => 'action show') %>
+        <%= link_to("Edit", {:action => 'edit', :id => subject.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => subject.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
